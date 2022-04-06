@@ -1,5 +1,6 @@
 # === HES A BOT === #
 
+# copilot is amazing
 # python 3.10 or higher
 
 import discord, os, datetime, time, random, asyncio
@@ -13,7 +14,7 @@ PREFIX = "hesa" # Bot's command activation string
 ADMIN = "BWP09" # Bot Admin's username without the #number
 FRIENDS = [ADMIN, "K!ng", "SodaCan3456", "leeeeeeeeee"] # List of friends
 COLOR = 0x009f9f # Deafult color
-VERSION = "B.0.7.0..22.4.3" # Self-explanatory
+VERSION = "B.0.7.2..22.4.6" # Self-explanatory
 loop = asyncio.get_event_loop()
 # react_yes = 0
 # react_no = 0
@@ -82,7 +83,6 @@ async def on_message(message): # Runs whenever a message is sent
         blacklisted_channels_response = ""
 
     global kid, last_err_msg
-    global get_date, get_time
     username = str(message.author).split("#")[0]
     user_message = str(message.content)
     channel = str(message.channel)
