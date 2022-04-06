@@ -268,18 +268,18 @@ async def on_message(message): # Runs whenever a message is sent
 
     elif user_message.lower().startswith("you little"): # A joke, alternative to "hesa role give"
         try:
-            split_msg = user_message.lower().split("you little ")[1]
+            args = user_message.lower().split("you little ")[1]
             member = message.author
-            role = get(member.guild.roles, name=split_msg)
+            role = get(member.guild.roles, name=args)
             await member.add_roles(role)
         except Exception as e:
             last_err_msg = e
     
     elif user_message.lower().startswith(f"{PREFIX} role give |"): # Give a role to someone
         try:
-            split_msg = user_message.lower().split("| ")[1]
+            args = user_message.lower().split("| ")[1]
             member = message.author
-            role = get(member.guild.roles, name=split_msg)
+            role = get(member.guild.roles, name=args)
             await member.add_roles(role)
         except Exception as e:
             last_err_msg = e
@@ -288,9 +288,9 @@ async def on_message(message): # Runs whenever a message is sent
     
     elif user_message.lower().startswith(f"{PREFIX} role remove |"): # Remove a role from someone
         try:
-            split_msg = user_message.lower().split("| ")[1]
+            args = user_message.lower().split("| ")[1]
             member = message.author
-            role = get(member.guild.roles, name=split_msg)
+            role = get(member.guild.roles, name=args)
             await member.remove_roles(role)
         except Exception as e:
             last_err_msg = e
@@ -305,10 +305,10 @@ async def on_message(message): # Runs whenever a message is sent
     #     global yes_amount, no_amount, current_pole, react_no, react_yes
     #     try:
     #         current_pole += 1
-    #         split_msg = user_message.lower().split("| ")[1]
-    #         yes_amount = int(split_msg.lower().split(" / ")[0])
-    #         no_amount = int(split_msg.lower().split(" / ")[1])
-    #         title_text = split_msg.lower().split(" / ")[2]
+    #         args = user_message.lower().split("| ")[1]
+    #         yes_amount = int(args.lower().split(" / ")[0])
+    #         no_amount = int(args.lower().split(" / ")[1])
+    #         title_text = args.lower().split(" / ")[2]
     #     except Exception as e:
     #         last_err_msg = e
     #         await message.channel.send(err("Syntax", str(e)), reference = message)
