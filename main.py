@@ -8,7 +8,7 @@ from discord.utils import get
 
 
 # Setup variables
-TOKEN = "OTQ3MzQzMTg5MzUyNzk2MjIw.Yhr4GQ.My4ft_pOYv1ZumuSFYeA22GHd3w" # DO NOT SHARE THIS CODE WITH ANYONE
+TOKEN = "" # DO NOT SHARE THIS CODE WITH ANYONE
 PREFIX = "hesa" # Bot's command activation string
 ADMIN = "BWP09" # Bot Admin's username without the #number
 FRIENDS = [ADMIN, "K!ng", "SodaCan3456", "leeeeeeeeee"] # List of friends

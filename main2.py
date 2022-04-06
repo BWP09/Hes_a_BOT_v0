@@ -1,3 +1,5 @@
+# Not functional yet, just a test
+
 # === HES A BOT === #
 
 import discord, os, datetime, time, random, asyncio
@@ -5,7 +7,7 @@ import colorama as col
 from discord.utils import get
 
 
-TOKEN = "OTQ3MzQzMTg5MzUyNzk2MjIw.Yhr4GQ.My4ft_pOYv1ZumuSFYeA22GHd3w"
+TOKEN = ""
 PREFIX = "hesa"
 ADMIN = "BWP09"
 FRIENDS = [ADMIN, "K!ng", "SodaCan3456", "leeeeeeeeee"]
