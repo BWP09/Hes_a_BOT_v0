@@ -31,7 +31,7 @@ client = discord.Client()
 # Make a function to log console output to file
 def log_to_file(message):
     date = datetime.date.today().strftime("%m-%d-%y")
-    with open(f"logs/LOG-{date}.txt", "a") as f:
+    with open(f"logs/LOG-{date}.txt", "a", encoding = "utf-8") as f:
         f.write(f"[{get_date()} {get_time()}]: {message}\n")
 
 def get_time(): # Used for getting time
@@ -425,15 +425,17 @@ async def on_message(message): # Runs whenever a message is sent
         await message.channel.send("how about yes")
         
     elif user_message.lower() == "yes": # Randomly picks a response
-        rand_int = random.randint(0, 1)
+        rand_int = random.randint(0, 2)
         match rand_int:
             case 0:
                 await message.channel.send("sure")
             case 1:
                 await message.channel.send("ok")
+            case 2:
+                await message.channel.send("fur sure...")
     
     elif user_message.lower().count("shut up") > 0:
-        await message.channel.send("tehe no no")
+        await message.channel.send("i dont shut up, i grow up, and when i look at you i throw up", reference = message)
 
     elif user_message.lower().count("russia") > 0:
         await message.channel.send(f"russia is mega gay and mega mean", reference = message)
@@ -482,6 +484,22 @@ async def on_message(message): # Runs whenever a message is sent
 
     elif user_message.lower().count("half life 3") > 0:
         await message.channel.send("if only..... :disappointed_relieved:")
+
+    elif user_message.lower().count("valorant") > 0:
+        await message.channel.send("hold on i gotta pee")
+    
+    elif user_message.lower().count("jk") > 0:
+        await message.channel.send("i dont think so :thinking:")
+    
+    elif user_message.lower().count("amogus") > 0:
+        rand_int = random.randint(0, 2)
+        match rand_int:
+            case 0:
+                await message.channel.send("sus")
+            case 1:
+                await message.channel.send("sus sus")
+            case 2:
+                await message.channel.send("sussy")
 
     # Bot Start
     elif user_message.lower().count("bot ") > 0:
