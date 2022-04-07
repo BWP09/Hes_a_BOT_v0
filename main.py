@@ -15,6 +15,10 @@ ADMIN = "BWP09" # Bot Admin's username without the #number
 FRIENDS = [ADMIN, "K!ng", "SodaCan3456", "leeeeeeeeee"] # List of friends
 COLOR = 0x009f9f # Deafult color
 VERSION = "B.0.7.2..22.4.6" # Self-explanatory
+ACTIVATOR_EQUALS = ["test1", "test2", "test3"]
+ACTIVATOR_CONTAINS = [""]
+RESPONCES_EQUAL = ["hi1", "hi2", "hi3"]
+RESPONCES_CONTAINS = [""]
 loop = asyncio.get_event_loop()
 # react_yes = 0
 # react_no = 0
@@ -355,6 +359,14 @@ async def on_message(message): # Runs whenever a message is sent
     # Response Start
     elif channel in blacklisted_channels_response: return # If the channel is blacklisted, ignore the message
 
+    elif user_message.lower() in ACTIVATOR_EQUALS:
+        i = ACTIVATOR_EQUALS.index(user_message.lower())
+        await message.channel.send(f"{RESPONCES_EQUAL[i]}")
+    
+    elif user_message.lower() in ACTIVATOR_CONTAINS:
+        i = ACTIVATOR_CONTAINS.index(user_message.lower())
+        await message.channel.send(f"{RESPONCES_CONTAINS[i]}")
+
     elif user_message.lower() == "stop":
         await message.channel.send(f"stop", reference = message)
 
@@ -556,3 +568,5 @@ async def on_message(message): # Runs whenever a message is sent
 
 
 client.run(TOKEN) # Runs the bot
+
+# Add on_edit() feature
