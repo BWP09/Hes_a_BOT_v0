@@ -9,7 +9,7 @@ from discord.utils import get
 
 
 # Setup variables
-TOKEN = "OTQ3MzQzMTg5MzUyNzk2MjIw.Yhr4GQ.mm8vJwMWO_bFKV6lQ5XP6jRtTUs" # DO NOT SHARE THIS CODE WITH ANYONE
+TOKEN = "" # DO NOT SHARE THIS CODE WITH ANYONE
 PREFIX = "hesa" # Bot's command activation string
 ADMIN = "BWP09" # Bot Admin's username without the #number
 FRIENDS = [ADMIN, "K!ng", "SodaCan3456", "leeeeeeeeee"] # List of friends
@@ -25,25 +25,41 @@ loop = asyncio.get_event_loop()
 # yes_amount = 0
 # no_amount = 0
 # current_pole = 0
-last_err_msg, msg, last_deleted_msg, edited_message = "", "", "", ""
+last_err_msg, msg = "", ""
 kid = 0
 
 os.system("color") # Needed for colorama module
 client = discord.Client()
 
 # Make a function to log console output to file
-def log_to_file(message):
+def log_to_file(file_name, message):
     date = datetime.date.today().strftime("%m-%d-%y")
-    with open(f"logs/LOG-{date}.txt", "a", encoding = "utf-8") as f:
-        f.write(f"[{get_date()} {get_time()}]: {message}\n")
+    with open(file_name, "a", encoding = "utf-8") as f:
+        f.write(f"[{get_date()} {get_time()}]: {message}")
+
+# Make a function with two args, file_name and message, to write to a file
+def write_file(file_name, message):
+    with open(file_name, "r+", encoding = "utf-8") as f:
+        f.seek(0)
+        f.truncate()
+        f.write(f"{message}")
+
+# Make a function with one args, file_name, read a file and return the content
+def read_file(file_name):
+    with open(file_name, "r", encoding = "utf-8") as f:
+        return f.read()
 
 def get_time(): # Used for getting time
     time = datetime.datetime.now()
     return time.strftime("%H:%M:%S") 
 
-def get_date(): # Used for getting date
+def get_date(type = 0): # Used for getting date
     date = datetime.date.today()
-    return date.strftime("%m/%d/%y")
+    match type:
+        case 0:
+            return date.strftime("%m/%d/%y")
+        case 1:
+            return date.strftime("%m-%d-%y")
 
 def err(str, errstate): # Error logging
     print(f"{col.Fore.YELLOW}>[Error Handler]: {errstate}")
@@ -70,25 +86,24 @@ async def send_msg_if_contains(message, input, amount, output, ref): # Used for 
 @client.event
 async def on_ready(): # Runs when bot first starts, like a setup function
     print(col.Style.RESET_ALL + "logged in as [{0.user}]".format(client) + f" (v{VERSION})")
-    await client.change_presence(status=discord.Status.online)
-    await client.change_presence(activity = discord.Game(f"Prefix is \"{PREFIX}\", type \"{PREFIX} help\""))
+    await client.change_presence(status = discord.Status.online)
+    await client.change_presence(activity = discord.Game(f"Command prefix: {PREFIX}, type \"{PREFIX} help\""))
 
 @client.event
-async def on_message_delete(message):
-    global last_deleted_msg
+async def on_message_delete(message): # Runs when a message is deleted, and logs it to file
     username = str(message.author).split("#")[0]
     user_message = str(message.content)
     channel = str(message.channel)
     server = str(message.guild)
     user_id = str(message.author.id)
     last_deleted_msg = user_message
-
-    log_to_file(f"[MESSAGE DELETE]\n[{get_date()}: {get_time()}]: [{server}: {channel}]: {username}: {user_message}")
-    print(f"{col.Fore.RED}[MESSAGE DELETE]\n{col.Fore.LIGHTMAGENTA_EX}[{get_date()}: {get_time()}]: {col.Fore.GREEN}[{server}: {col.Fore.LIGHTGREEN_EX}{channel}{col.Fore.GREEN}]: {col.Fore.CYAN}{username}: {col.Fore.LIGHTBLUE_EX}\033[4m{user_message}\033[0m")
+    
+    write_file("data/last_deleted_msg.txt", f"{last_deleted_msg}")
+    log_to_file(f"logs/LOG-{get_date(1)}.txt", f"[MESSAGE DELETE]\n[{get_date()} {get_time()}]: [{server}: {channel}]: {username}: {user_message}\n")
+    print(f"{col.Fore.RED}[MESSAGE DELETE] ->\n{col.Fore.LIGHTMAGENTA_EX}[{get_date()}: {get_time()}]: {col.Fore.GREEN}[{server}: {col.Fore.LIGHTGREEN_EX}{channel}{col.Fore.GREEN}]: {col.Fore.CYAN}{username}: {col.Fore.LIGHTBLUE_EX}\033[4m{user_message}\033[0m")
 
 @client.event
-async def on_message_edit(before, after):
-    global edited_message
+async def on_message_edit(before, after): # Runs when a message is edited, and logs it to file
     username = str(before.author).split("#")[0]
     user_message = str(before.content)
     channel = str(before.channel)
@@ -96,7 +111,7 @@ async def on_message_edit(before, after):
     user_id = str(before.author.id)
     edited_message = str(after.content)
 
-    log_to_file(f"[MESSAGE EDIT]\n[{get_date()}: {get_time()}]: [{server}: {channel}]: {username}: {user_message} -> {edited_message}")
+    log_to_file(f"logs/LOG-{get_date(1)}.txt", f"[MESSAGE EDIT]\n[{get_date()} {get_time()}]: [{server}: {channel}]: {username}: {user_message} -> {edited_message}\n")
     print(f"{col.Fore.RED}[MESSAGE EDIT]\n{col.Fore.LIGHTMAGENTA_EX}[{get_date()}: {get_time()}]: {col.Fore.GREEN}[{server}: {col.Fore.LIGHTGREEN_EX}{channel}{col.Fore.GREEN}]: {col.Fore.CYAN}{username}: {col.Fore.LIGHTBLUE_EX}{user_message} -> {col.Fore.LIGHTBLUE_EX}\033[4m{edited_message}\033[0m")
 
 @client.event
@@ -124,7 +139,7 @@ async def on_message(message): # Runs whenever a message is sent
     elif username in FRIENDS:
         print(f"{col.Fore.LIGHTMAGENTA_EX}[{get_date()}: {get_time()}]: {col.Fore.GREEN}[{server}: {col.Fore.LIGHTGREEN_EX}{channel}{col.Fore.GREEN}]: {col.Fore.CYAN}\033[4m{username}:\033[0m {col.Fore.LIGHTBLUE_EX}{user_message}")
     
-    log_to_file(f"[{server}: {channel}]: {username}: {user_message}") # Logs console output to file
+    log_to_file(f"logs/LOG-{get_date(1)}.txt", f"[{server}: {channel}]: {username}: {user_message}\n") # Logs console output to file
     
 
     # if the message is from the bot, ignore it
@@ -329,6 +344,10 @@ async def on_message(message): # Runs whenever a message is sent
     
     elif user_message.lower().startswith(f"{PREFIX} last_err"): # Get the last error message, and send it
         await message.channel.send(f"[Last recorded error message]: {last_err_msg}")
+    
+    elif user_message.lower().startswith(f"{PREFIX} snipe"): # Get the last deleted message
+        last_deleted_msg = read_file("data/last_deleted_msg.txt")
+        await message.channel.send(f"[Last deleted message]: {last_deleted_msg}")
 
     # elif user_message.lower().startswith(f"{PREFIX} pole |"): # Just a test command
     #     global yes_amount, no_amount, current_pole, react_no, react_yes
