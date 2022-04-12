@@ -14,7 +14,7 @@ PREFIX = "hesa" # Bot's command activation string
 ADMIN = "BWP09" # Bot Admin's username without the #number
 FRIENDS = [ADMIN, "K!ng", "SodaCan3456", "leeeeeeeeee"] # List of friends
 COLOR = 0x009f9f # Deafult color
-VERSION = "B.0.8.0..22.4.7" # Self-explanatory
+VERSION = "B.0.9.0..22.4.7" # Self-explanatory
 ACTIVATOR_EQUALS = ["test1", "test2", "test3"]
 ACTIVATOR_CONTAINS = [""]
 RESPONCES_EQUAL = ["hi1", "hi2", "hi3"]
@@ -25,9 +25,8 @@ loop = asyncio.get_event_loop()
 # yes_amount = 0
 # no_amount = 0
 # current_pole = 0
-last_err_msg = ""
+last_err_msg, msg, last_deleted_msg, edited_message = "", "", "", ""
 kid = 0
-msg = ""
 
 os.system("color") # Needed for colorama module
 client = discord.Client()
@@ -73,6 +72,30 @@ async def on_ready(): # Runs when bot first starts, like a setup function
     print(col.Style.RESET_ALL + "logged in as [{0.user}]".format(client) + f" (v{VERSION})")
     await client.change_presence(status=discord.Status.online)
     await client.change_presence(activity = discord.Game(f"Prefix is \"{PREFIX}\", type \"{PREFIX} help\""))
+
+@client.event
+async def on_message_delete(message):
+    global last_deleted_msg
+    username = str(message.author).split("#")[0]
+    user_message = str(message.content)
+    channel = str(message.channel)
+    server = str(message.guild)
+    user_id = str(message.author.id)
+    last_deleted_msg = user_message
+
+    print(f"{col.Fore.RED}[MESSAGE DELETE]\n{col.Fore.LIGHTMAGENTA_EX}[{get_date()}: {get_time()}]: {col.Fore.GREEN}[{server}: {col.Fore.LIGHTGREEN_EX}{channel}{col.Fore.GREEN}]: {col.Fore.CYAN}{username}: {col.Fore.LIGHTBLUE_EX}\033[4m{user_message}\033[0m")
+
+@client.event
+async def on_message_edit(before, after):
+    global edited_message
+    username = str(before.author).split("#")[0]
+    user_message = str(before.content)
+    channel = str(before.channel)
+    server = str(before.guild)
+    user_id = str(before.author.id)
+    edited_message = str(after.content)
+
+    print(f"{col.Fore.RED}[MESSAGE EDIT]\n{col.Fore.LIGHTMAGENTA_EX}[{get_date()}: {get_time()}]: {col.Fore.GREEN}[{server}: {col.Fore.LIGHTGREEN_EX}{channel}{col.Fore.GREEN}]: {col.Fore.CYAN}{username}: {col.Fore.LIGHTBLUE_EX}{user_message} -> {col.Fore.LIGHTBLUE_EX}\033[4m{edited_message}\033[0m")
 
 @client.event
 async def on_message(message): # Runs whenever a message is sent
@@ -363,9 +386,9 @@ async def on_message(message): # Runs whenever a message is sent
         i = ACTIVATOR_EQUALS.index(user_message.lower())
         await message.channel.send(f"{RESPONCES_EQUAL[i]}")
     
-    elif user_message.lower() in ACTIVATOR_CONTAINS:
-        i = ACTIVATOR_CONTAINS.index(user_message.lower())
-        await message.channel.send(f"{RESPONCES_CONTAINS[i]}")
+    # elif user_message.lower() in ACTIVATOR_CONTAINS:
+    #     i = ACTIVATOR_CONTAINS.index(user_message.lower())
+    #     await message.channel.send(f"{RESPONCES_CONTAINS[i]}")
 
     elif user_message.lower() == "stop":
         await message.channel.send(f"stop", reference = message)
@@ -390,6 +413,9 @@ async def on_message(message): # Runs whenever a message is sent
 
     elif user_message.lower() == "keegan":
         await message.channel.send("hehe")
+    
+    elif user_message.lower() == "hassan":
+        await message.channel.send("kidnapped your family + L + ratio + bozo")
 
     elif user_message.lower() == "kellog":
         await message.channel.send("is it super kellog krazy time?")
@@ -421,7 +447,7 @@ async def on_message(message): # Runs whenever a message is sent
             case 1:
                 await message.channel.send("why not?", reference = message)
     
-    elif user_message.lower().count("tf") > 0 and user_message.lower().count("tf2") == 0:
+    elif user_message.lower().count("tf") > 0 and user_message.lower().count("tf2") == 0 and user_message.lower().count("tf 2") == 0:
         await message.channel.send("HEY! watch your language.", reference = message)
     
     elif user_message.lower().count("fuck") > 0:
