@@ -9,7 +9,7 @@ from discord.utils import get
 
 
 # Setup variables
-TOKEN = "" # DO NOT SHARE THIS CODE WITH ANYONE
+TOKEN = "OTQ3MzQzMTg5MzUyNzk2MjIw.Yhr4GQ.mm8vJwMWO_bFKV6lQ5XP6jRtTUs" # DO NOT SHARE THIS CODE WITH ANYONE
 PREFIX = "hesa" # Bot's command activation string
 ADMIN = "BWP09" # Bot Admin's username without the #number
 FRIENDS = [ADMIN, "K!ng", "SodaCan3456", "leeeeeeeeee"] # List of friends
@@ -83,6 +83,7 @@ async def on_message_delete(message):
     user_id = str(message.author.id)
     last_deleted_msg = user_message
 
+    log_to_file(f"[MESSAGE DELETE]\n[{get_date()}: {get_time()}]: [{server}: {channel}]: {username}: {user_message}")
     print(f"{col.Fore.RED}[MESSAGE DELETE]\n{col.Fore.LIGHTMAGENTA_EX}[{get_date()}: {get_time()}]: {col.Fore.GREEN}[{server}: {col.Fore.LIGHTGREEN_EX}{channel}{col.Fore.GREEN}]: {col.Fore.CYAN}{username}: {col.Fore.LIGHTBLUE_EX}\033[4m{user_message}\033[0m")
 
 @client.event
@@ -95,6 +96,7 @@ async def on_message_edit(before, after):
     user_id = str(before.author.id)
     edited_message = str(after.content)
 
+    log_to_file(f"[MESSAGE EDIT]\n[{get_date()}: {get_time()}]: [{server}: {channel}]: {username}: {user_message} -> {edited_message}")
     print(f"{col.Fore.RED}[MESSAGE EDIT]\n{col.Fore.LIGHTMAGENTA_EX}[{get_date()}: {get_time()}]: {col.Fore.GREEN}[{server}: {col.Fore.LIGHTGREEN_EX}{channel}{col.Fore.GREEN}]: {col.Fore.CYAN}{username}: {col.Fore.LIGHTBLUE_EX}{user_message} -> {col.Fore.LIGHTBLUE_EX}\033[4m{edited_message}\033[0m")
 
 @client.event
