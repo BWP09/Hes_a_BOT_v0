@@ -121,3 +121,32 @@
 [04/11/22 20:19:20]: [Pynoly Development: bot-testing]: BWP09: delete test (bellow)
 [04/11/22 20:19:23]: [Pynoly Development: bot-testing]: BWP09: test
 [04/11/22 20:19:37]: [Pynoly Development: bot-testing]: BWP09: yessir it works
+[04/11/22 20:28:46]: [Pynoly Development: bot-testing]: BWP09: edit test
+[04/11/22 20:28:53]: [MESSAGE EDIT]
+[04/11/22: 20:28:53]: [Pynoly Development: bot-testing]: BWP09: edit test -> edit test (edit right here)
+[04/11/22 20:29:04]: [Pynoly Development: bot-testing]: BWP09: delete test (bellow)
+[04/11/22 20:29:10]: [Pynoly Development: bot-testing]: BWP09: delete me
+[04/11/22 20:29:12]: [MESSAGE DELETE]
+[04/11/22: 20:29:12]: [Pynoly Development: bot-testing]: BWP09: delete me
+[04/11/22 20:29:21]: [Pynoly Development: bot-testing]: BWP09: now it works
+[04/11/22 20:29:23]: [Pynoly Development: bot-testing]: BWP09: yay
+[04/11/22 20:31:34]: [Pynoly Development: bot-testing]: BWP09: hesa stop
+[04/11/22 20:31:34]: [Pynoly Development: bot-testing]: He's a BOT: ok fine
+[04/11/22 20:31:44]: [Pynoly Development: bot-testing]: BWP09: hesa test
+[04/11/22 20:31:44]: [Pynoly Development: bot-testing]: He's a BOT: test
+[04/11/22 20:31:48]: [Pynoly Development: bot-testing]: BWP09: ok
+[04/11/22 20:31:48]: [Pynoly Development: bot-testing]: He's a BOT: ok then bud
+[04/11/22 20:31:50]: [Pynoly Development: bot-testing]: BWP09: yes
+[04/11/22 20:31:50]: [Pynoly Development: bot-testing]: He's a BOT: sure
+[04/11/22 20:31:54]: [Pynoly Development: bot-testing]: BWP09: ok yes
+[04/11/22 20:45:52]: [The Vibe Zone: general]: Qualsol: oi
+[04/11/22 20:45:53]: [The Vibe Zone: general]: Qualsol: oi
+[04/11/22 20:54:07]: [Pynoly Development: bot-testing]: BWP09: log test
+[04/11/22 21:23:50]: [Pynoly Development: bot-testing]: BWP09: log test
+[04/11/22 21:24:43]: [Pynoly Development: bot-testing]: BWP09: hesa snipe
+[04/11/22 21:24:43]: [Pynoly Development: bot-testing]: He's a BOT: [Last deleted message]:
+[04/11/22 21:24:51]: [MESSAGE DELETE]
+[04/11/22 21:24:51]: [Pynoly Development: bot-testing]: BWP09: log test
+[04/11/22 21:24:55]: [Pynoly Development: bot-testing]: BWP09: hesa snipe
+[04/11/22 21:24:55]: [Pynoly Development: bot-testing]: He's a BOT: [Last deleted message]: log test
+[04/11/22 21:25:00]: [Pynoly Development: bot-testing]: BWP09: hehe

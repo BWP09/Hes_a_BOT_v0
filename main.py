@@ -14,7 +14,7 @@ PREFIX = "hesa" # Bot's command activation string
 ADMIN = "BWP09" # Bot Admin's username without the #number
 FRIENDS = [ADMIN, "K!ng", "SodaCan3456", "leeeeeeeeee"] # List of friends
 COLOR = 0x009f9f # Deafult color
-VERSION = "B.0.9.0..22.4.11" # Self-explanatory
+VERSION = "B.0.9.1..22.4.13" # Self-explanatory
 ACTIVATOR_EQUALS = ["test1", "test2", "test3"]
 ACTIVATOR_CONTAINS = [""]
 RESPONCES_EQUAL = ["hi1", "hi2", "hi3"]
@@ -87,7 +87,7 @@ async def send_msg_if_contains(message, input, amount, output, ref): # Used for 
 async def on_ready(): # Runs when bot first starts, like a setup function
     print(col.Style.RESET_ALL + "logged in as [{0.user}]".format(client) + f" (v{VERSION})")
     await client.change_presence(status = discord.Status.online)
-    await client.change_presence(activity = discord.Game(f"Command prefix: {PREFIX}, type \"{PREFIX} help\""))
+    await client.change_presence(activity = discord.Game(f"Prefix: {PREFIX}, type \"{PREFIX} help\""))
 
 @client.event
 async def on_message_delete(message): # Runs when a message is deleted, and logs it to file
@@ -96,9 +96,8 @@ async def on_message_delete(message): # Runs when a message is deleted, and logs
     channel = str(message.channel)
     server = str(message.guild)
     user_id = str(message.author.id)
-    last_deleted_msg = user_message
     
-    write_file("data/last_deleted_msg.txt", f"{last_deleted_msg}")
+    write_file("data/last_deleted_msg.txt", f"[{get_date()} {get_time()}]: [{server}: {channel}]: {username}: {user_message}")
     log_to_file(f"logs/LOG-{get_date(1)}.txt", f"[MESSAGE DELETE]\n[{get_date()} {get_time()}]: [{server}: {channel}]: {username}: {user_message}\n")
     print(f"{col.Fore.RED}[MESSAGE DELETE] ->\n{col.Fore.LIGHTMAGENTA_EX}[{get_date()}: {get_time()}]: {col.Fore.GREEN}[{server}: {col.Fore.LIGHTGREEN_EX}{channel}{col.Fore.GREEN}]: {col.Fore.CYAN}{username}: {col.Fore.LIGHTBLUE_EX}\033[4m{user_message}\033[0m")
 
@@ -197,6 +196,7 @@ async def on_message(message): # Runs whenever a message is sent
         `{PREFIX} megaspam | <amount> / <message>` - spam a message in chat (many smaller messages, max is 20)
         `{PREFIX} last_err` - display the last technical error message
         !!NOT IMPLIMENTED!! `{PREFIX} pole | <threshold of the amount of \"yes\" votes needed> / <threshold of the amount of \"no\" votes needed> / <text>`
+        `{PREFIX} snipe` - shows the last deleted message, credit to K!ng
         v{VERSION}
         """, color=COLOR)
         await message.add_reaction("☑️")
@@ -450,6 +450,12 @@ async def on_message(message): # Runs whenever a message is sent
     elif user_message.lower() == "big sad":
         await message.channel.send(":cry:")
 
+    elif user_message.lower() == "mega sad":
+        await message.channel.send(":cry: :cry: :cry: :cry: :cry:")
+    
+    elif user_message.lower() == "chunky sad":
+        await message.channel.send(":cry:\nhttps://i1.sndcdn.com/artworks-G7nQ5blTKxfiVCc0-YuOnUQ-t500x500.jpg")
+
     elif user_message.lower().count("jesus") > 0: return
     
     elif user_message.lower().count("sus") > 0: # Randomly picks a response
@@ -615,5 +621,3 @@ async def on_message(message): # Runs whenever a message is sent
 
 
 client.run(TOKEN) # Runs the bot
-
-# Add on_edit() feature
