@@ -16,9 +16,7 @@ FRIENDS = [ADMIN, "K!ng", "SodaCan3456", "leeeeeeeeee"] # List of friends
 COLOR = 0x009f9f # Deafult color
 VERSION = "B.0.9.1..22.4.13" # Self-explanatory
 ACTIVATOR_EQUALS = ["test1", "test2", "test3"]
-ACTIVATOR_CONTAINS = [""]
 RESPONCES_EQUAL = ["hi1", "hi2", "hi3"]
-RESPONCES_CONTAINS = [""]
 loop = asyncio.get_event_loop()
 # react_yes = 0
 # react_no = 0
@@ -99,7 +97,7 @@ async def on_message_delete(message): # Runs when a message is deleted, and logs
     
     write_file("data/last_deleted_msg.txt", f"[{get_date()} {get_time()}]: [{server}: {channel}]: {username}: {user_message}")
     log_to_file(f"logs/LOG-{get_date(1)}.txt", f"[MESSAGE DELETE]\n[{get_date()} {get_time()}]: [{server}: {channel}]: {username}: {user_message}\n")
-    print(f"{col.Fore.RED}[MESSAGE DELETE] ->\n{col.Fore.LIGHTMAGENTA_EX}[{get_date()}: {get_time()}]: {col.Fore.GREEN}[{server}: {col.Fore.LIGHTGREEN_EX}{channel}{col.Fore.GREEN}]: {col.Fore.CYAN}{username}: {col.Fore.LIGHTBLUE_EX}\033[4m{user_message}\033[0m")
+    print(f"{col.Fore.RED}[MESSAGE DELETE] ->\n{col.Fore.LIGHTMAGENTA_EX}[{get_date()}: {get_time()}]: {col.Fore.GREEN}[{server}: {col.Fore.LIGHTGREEN_EX}{channel}{col.Fore.GREEN}]: {col.Fore.YELLOW} {col.Fore.CYAN}{username}: {col.Fore.LIGHTBLUE_EX}\033[4m{user_message}\033[0m")
 
 @client.event
 async def on_message_edit(before, after): # Runs when a message is edited, and logs it to file
