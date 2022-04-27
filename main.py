@@ -9,12 +9,12 @@ from discord.utils import get
 
 
 # Setup variables
-TOKEN = "" # DO NOT SHARE THIS CODE WITH ANYONE
+TOKEN = "OTQ3MzQzMTg5MzUyNzk2MjIw.Yhr4GQ.l0_hf-1Usl0ajqqYQW2X4XiJdc8" # DO NOT SHARE THIS CODE WITH ANYONE
 PREFIX = "hesa" # Bot's command activation string
 ADMIN = "BWP09" # Bot Admin's username without the #number
 FRIENDS = [ADMIN, "K!ng", "SodaCan3456", "leeeeeeeeee"] # List of friends
 COLOR = 0x009f9f # Deafult color
-VERSION = "B.0.9.1..22.4.13" # Self-explanatory
+VERSION = "B.0.9.3..22.4.26" # Self-explanatory
 ACTIVATOR_EQUALS = ["test1", "test2", "test3"]
 RESPONCES_EQUAL = ["hi1", "hi2", "hi3"]
 loop = asyncio.get_event_loop()
@@ -63,24 +63,6 @@ def err(str, errstate): # Error logging
     print(f"{col.Fore.YELLOW}>[Error Handler]: {errstate}")
     return f"[Error Handler]: {str}"
 
-async def send_msg_if_equal(message, input, output, ref): # Used for sending messages if the input is equal to the output
-    match ref:
-        case 0:
-            if message.content.lower() == input:
-                await message.channel.send(output)
-        case 1:
-            if message.content.lower() == input:
-                await message.channel.send(output, reference = message)
-    
-async def send_msg_if_contains(message, input, amount, output, ref): # Used for sending messages with .count()
-    match ref:
-        case 0:
-            if message.content.lower().count(input) > amount:
-                await message.channel.send(output)
-        case 1:
-            if message.content.lower().count(input) > amount:
-                await message.channel.send(output, reference = message)
-
 @client.event
 async def on_ready(): # Runs when bot first starts, like a setup function
     print(col.Style.RESET_ALL + "logged in as [{0.user}]".format(client) + f" (v{VERSION})")
@@ -117,8 +99,10 @@ async def on_message(message): # Runs whenever a message is sent
     try:
         f1 = open("blacklist_all.txt", "r+") # Opens the unversal blacklist file
         f2 = open("blacklist_response.txt", "r+") # Opens the response blacklist file
+        f3 = open("blacklist_snipe.txt", "r+") # Opens the snipe blacklist file
         blacklisted_channels_all = f1.read().split(", ")
         blacklisted_channels_response = f2.read().split(", ")
+        blacklisted_snipe = f3.read().split(", ")
     except:
         blacklisted_channels_all = ""
         blacklisted_channels_response = ""
@@ -128,7 +112,6 @@ async def on_message(message): # Runs whenever a message is sent
     user_message = str(message.content)
     channel = str(message.channel)
     server = str(message.guild)
-    user_id = str(message.author.id)
 
     # Friend check
     if username not in FRIENDS:
@@ -143,8 +126,9 @@ async def on_message(message): # Runs whenever a message is sent
     if message.author == client.user: return
 
     # if the message is from a blacklisted channel, ignore it
-    elif channel in blacklisted_channels_all: return
+    elif channel.id in blacklisted_channels_all: return
 
+    elif user_message.lower().count("(hesa be quiet)") > 0: pass
 
     # Command Start
     elif user_message.lower() == f"{PREFIX} test": # Test command
@@ -185,6 +169,8 @@ async def on_message(message): # Runs whenever a message is sent
     elif user_message.lower() == f"{PREFIX} help": # A help command
         embed_var = discord.Embed(title="hesa help", description=f"""
         `{PREFIX} help` - shows this message
+        `{PREFIX}` <vc, join> - joins the voice channel
+        `{PREFIX}` <leave> - leaves the voice channel
         `{PREFIX} test` - for a test message
         `{PREFIX} status | <online, offline, idle, dnd>` - change the bot's status
         `{PREFIX} status msg | <message>` - change the bot's status message
@@ -343,7 +329,7 @@ async def on_message(message): # Runs whenever a message is sent
     elif user_message.lower().startswith(f"{PREFIX} last_err"): # Get the last error message, and send it
         await message.channel.send(f"[Last recorded error message]: {last_err_msg}")
     
-    elif user_message.lower().startswith(f"{PREFIX} snipe"): # Get the last deleted message
+    elif user_message.lower().startswith(f"{PREFIX} snipe") and channel.id not in blacklisted_snipe: # Get the last deleted message
         last_deleted_msg = read_file("data/last_deleted_msg.txt")
         await message.channel.send(f"[Last deleted message]: {last_deleted_msg}")
 
@@ -399,7 +385,7 @@ async def on_message(message): # Runs whenever a message is sent
     # Notify End
 
     # Response Start
-    elif channel in blacklisted_channels_response: return # If the channel is blacklisted, ignore the message
+    elif channel.id in blacklisted_channels_response: return # If the channel is blacklisted, ignore the message
 
     elif user_message.lower() in ACTIVATOR_EQUALS:
         i = ACTIVATOR_EQUALS.index(user_message.lower())
@@ -433,8 +419,8 @@ async def on_message(message): # Runs whenever a message is sent
     elif user_message.lower() == "keegan":
         await message.channel.send("hehe")
     
-    elif user_message.lower() == "hassan":
-        await message.channel.send("kidnapped your family + L + ratio + bozo")
+    elif user_message.lower().count("hassan") > 0:
+        await message.channel.send("kidnapped your family + L + ratio + bozo\nhttps://cdn.discordapp.com/attachments/942661940554117122/966856943698313286/IMG_0306.jpg")
 
     elif user_message.lower() == "kellog":
         await message.channel.send("is it super kellog krazy time?")
@@ -444,6 +430,9 @@ async def on_message(message): # Runs whenever a message is sent
     
     elif user_message.lower() == "ok":
         await message.channel.send("ok then bud")
+    
+    elif user_message.lower() == "oh":
+        await message.channel.send("bawls")
     
     elif user_message.lower() == "big sad":
         await message.channel.send(":cry:")
@@ -481,7 +470,7 @@ async def on_message(message): # Runs whenever a message is sent
     elif user_message.lower().count("shit") > 0:
         await message.channel.send("HEY! watch your language.", reference = message)
 
-    elif user_message.lower().count("hell") > 0:
+    elif user_message.lower().count("hell") > 0 and user_message.lower().count("hello") == 0:
         await message.channel.send("HEY! watch your language.", reference = message)
 
     elif user_message.lower() == "no":
@@ -582,8 +571,6 @@ async def on_message(message): # Runs whenever a message is sent
 
     elif user_message.lower().endswith("b-o-t"):
         await message.channel.send("Im not a bot.... thats so mean :cry:", reference = message)
-    
-    loop.create_task(send_msg_if_equal(message, "extra test", "yay it works, and hello from the land of async functions!!!", 1))
     # Bot End
     # Response End
 
