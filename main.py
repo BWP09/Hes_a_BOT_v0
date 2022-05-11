@@ -9,12 +9,12 @@ from discord.utils import get
 
 
 # Setup variables
-TOKEN = "OTQ3MzQzMTg5MzUyNzk2MjIw.Yhr4GQ.l0_hf-1Usl0ajqqYQW2X4XiJdc8" # DO NOT SHARE THIS CODE WITH ANYONE
+TOKEN = "" # DO NOT SHARE THIS CODE WITH ANYONE
 PREFIX = "hesa" # Bot's command activation string
 ADMIN = "BWP09" # Bot Admin's username without the #number
-FRIENDS = [ADMIN, "K!ng", "SodaCan3456", "leeeeeeeeee"] # List of friends
+FRIENDS = [ADMIN, "K!ng", "SodaCan3456"] # List of friends
 COLOR = 0x009f9f # Deafult color
-VERSION = "B.0.9.3..22.4.26" # Self-explanatory
+VERSION = "B.0.9.3..22.5.10" # Self-explanatory
 ACTIVATOR_EQUALS = ["test1", "test2", "test3"]
 RESPONCES_EQUAL = ["hi1", "hi2", "hi3"]
 loop = asyncio.get_event_loop()
@@ -99,10 +99,8 @@ async def on_message(message): # Runs whenever a message is sent
     try:
         f1 = open("blacklist_all.txt", "r+") # Opens the unversal blacklist file
         f2 = open("blacklist_response.txt", "r+") # Opens the response blacklist file
-        f3 = open("blacklist_snipe.txt", "r+") # Opens the snipe blacklist file
         blacklisted_channels_all = f1.read().split(", ")
         blacklisted_channels_response = f2.read().split(", ")
-        blacklisted_snipe = f3.read().split(", ")
     except:
         blacklisted_channels_all = ""
         blacklisted_channels_response = ""
@@ -112,6 +110,7 @@ async def on_message(message): # Runs whenever a message is sent
     user_message = str(message.content)
     channel = str(message.channel)
     server = str(message.guild)
+    user_id = str(message.author.id)
 
     # Friend check
     if username not in FRIENDS:
@@ -126,7 +125,7 @@ async def on_message(message): # Runs whenever a message is sent
     if message.author == client.user: return
 
     # if the message is from a blacklisted channel, ignore it
-    elif channel.id in blacklisted_channels_all: return
+    elif channel in blacklisted_channels_all: return
 
     elif user_message.lower().count("(hesa be quiet)") > 0: pass
 
@@ -174,7 +173,7 @@ async def on_message(message): # Runs whenever a message is sent
         `{PREFIX} test` - for a test message
         `{PREFIX} status | <online, offline, idle, dnd>` - change the bot's status
         `{PREFIX} status msg | <message>` - change the bot's status message
-        `{PREFIX} stop` to stop He's a BOT
+        `{PREFIX} stop` - stop He's a BOT
         `{PREFIX} k*dcounter` - display the k*d counter
         `{PREFIX} spam | <amount> / <message>` - \"spam\" a message in chat (one big message)
         `{PREFIX} megaspam | <amount> / <message>` - spam a message in chat (many smaller messages, max is 20)
@@ -270,7 +269,7 @@ async def on_message(message): # Runs whenever a message is sent
             await message.add_reaction("❌")
     
 
-    elif user_message.lower().startswith(f"{PREFIX} vc") or user_message.lower().startswith(f"vc {PREFIX}"): # Used to join a voice channel
+    elif user_message.lower().startswith(f"{PREFIX} vc") or user_message.lower().startswith(f"{PREFIX} join"): # Used to join a voice channel
         if message.author.voice: # If the person is in a voice channel
             channel = message.author.voice.channel
             await channel.connect()
@@ -306,9 +305,10 @@ async def on_message(message): # Runs whenever a message is sent
     elif user_message.lower().startswith(f"{PREFIX} role give |"): # Give a role to someone
         try:
             args = user_message.lower().split("| ")[1]
-            member = message.author
-            role = get(member.guild.roles, name=args)
-            await member.add_roles(role)
+            member = args.split(" / ")[0]
+            print(member)
+            role = get(message.guild.roles, name=args.split(" / ")[1])
+            await message.guild.get_member(int(member)).add_roles(role)
         except Exception as e:
             last_err_msg = e
             await message.channel.send(err("Role Error", str(e)), reference = message)
@@ -317,8 +317,8 @@ async def on_message(message): # Runs whenever a message is sent
     elif user_message.lower().startswith(f"{PREFIX} role remove |"): # Remove a role from someone
         try:
             args = user_message.lower().split("| ")[1]
-            member = message.author
-            role = get(member.guild.roles, name=args)
+            member = args.split(" / ")[0]
+            role = get(message.guild.roles, name=args.split(" / ")[1])
             await member.remove_roles(role)
         except Exception as e:
             last_err_msg = e
@@ -329,8 +329,9 @@ async def on_message(message): # Runs whenever a message is sent
     elif user_message.lower().startswith(f"{PREFIX} last_err"): # Get the last error message, and send it
         await message.channel.send(f"[Last recorded error message]: {last_err_msg}")
     
-    elif user_message.lower().startswith(f"{PREFIX} snipe") and channel.id not in blacklisted_snipe: # Get the last deleted message
+    elif user_message.lower().startswith(f"{PREFIX} snipe"): # Get the last deleted message
         last_deleted_msg = read_file("data/last_deleted_msg.txt")
+        await message.add_reaction("☑️")
         await message.channel.send(f"[Last deleted message]: {last_deleted_msg}")
 
     # elif user_message.lower().startswith(f"{PREFIX} pole |"): # Just a test command
@@ -385,7 +386,7 @@ async def on_message(message): # Runs whenever a message is sent
     # Notify End
 
     # Response Start
-    elif channel.id in blacklisted_channels_response: return # If the channel is blacklisted, ignore the message
+    elif channel in blacklisted_channels_response: return # If the channel is blacklisted, ignore the message
 
     elif user_message.lower() in ACTIVATOR_EQUALS:
         i = ACTIVATOR_EQUALS.index(user_message.lower())
