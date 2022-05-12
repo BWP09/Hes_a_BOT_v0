@@ -3,18 +3,19 @@
 # copilot is amazing
 # python 3.10 or higher
 
+from weakref import ref
 import discord, os, datetime, time, random, asyncio
 import colorama as col
 from discord.utils import get
 
 
 # Setup variables
-TOKEN = "" # DO NOT SHARE THIS CODE WITH ANYONE
+TOKEN = "OTQ3MzQzMTg5MzUyNzk2MjIw.Yhr4GQ.rSRz8uj56_kiR_2XUZk4wacJTYQ" # DO NOT SHARE THIS CODE WITH ANYONE
 PREFIX = "hesa" # Bot's command activation string
 ADMIN = "BWP09" # Bot Admin's username without the #number
 FRIENDS = [ADMIN, "K!ng", "SodaCan3456"] # List of friends
 COLOR = 0x009f9f # Deafult color
-VERSION = "B.0.9.3..22.5.10" # Self-explanatory
+VERSION = "B.0.9.4..11.5.22" # Self-explanatory
 ACTIVATOR_EQUALS = ["test1", "test2", "test3"]
 RESPONCES_EQUAL = ["hi1", "hi2", "hi3"]
 loop = asyncio.get_event_loop()
@@ -553,6 +554,9 @@ async def on_message(message): # Runs whenever a message is sent
                 await message.channel.send("sus sus")
             case 2:
                 await message.channel.send("sussy")
+            
+    elif user_message.lower() == "please":
+        await message.channel.send("with a cherry on top...", reference = message)
 
     # Bot Start
     elif user_message.lower().count("bot ") > 0:
