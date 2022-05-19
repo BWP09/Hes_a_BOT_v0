@@ -242,15 +242,18 @@ async def on_message(message): # Runs whenever a message is sent
             args = user_message.lower().split("| ")[1]
             text = args.split(" / ")[1]
             amount = args.split(" / ")[0]
-            print(f"{col.Fore.RED}[spam] {col.Style.RESET_ALL}spamming: {text}")
+            print(f"{col.Fore.RED}[spam] {col.Style.RESET_ALL}spamming: {text}, {amount} times")
+            for i in range(int(amount)):
+                await message.channel.send(text)
+            await message.add_reaction("☑️")
             for _ in range(int(amount)):
                 msg += text + " \n"
-            await message.add_reaction("☑️")
             await message.channel.send(str(msg))
+            await message.add_reaction("☑️")
             msg = ""
         except Exception as e:
             last_err_msg = e
-            if e.lower().count("400 bad request") > 0:
+            if str(e).lower().count("400 bad request") > 0:
                 await message.channel.send(err("Amount of messages is too high", str(e)), reference = message)
             else:
                 await message.channel.send(err("Syntax", str(e)), reference = message)
@@ -266,6 +269,7 @@ async def on_message(message): # Runs whenever a message is sent
                 await message.channel.send(err("amount is too high", "amount is too high"), reference = message)
                 await message.add_reaction("❌")
             else:
+                print(f"{col.Fore.RED}[megaspam] {col.Style.RESET_ALL}spamming: {text}")
                 await message.add_reaction("☑️")
                 for i in range(int(amount)):
                     print(f"{col.Fore.RED}[megaspam] {col.Style.RESET_ALL}on message: {i + 1} of {amount}")
