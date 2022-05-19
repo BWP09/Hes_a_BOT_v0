@@ -15,7 +15,7 @@ PREFIX = "hesa" # Bot's command activation string
 ADMIN = "BWP09" # Bot Admin's username without the #number
 FRIENDS = [ADMIN, "K!ng", "SodaCan3456"] # List of friends
 COLOR = 0x009f9f # Deafult color
-VERSION = "B.0.9.4..11.5.22" # Self-explanatory
+VERSION = "B.0.9.5..19.5.22" # Self-explanatory
 ACTIVATOR_EQUALS = ["test1", "test2", "test3"]
 RESPONCES_EQUAL = ["hi1", "hi2", "hi3"]
 loop = asyncio.get_event_loop()
@@ -98,8 +98,8 @@ async def on_message_edit(before, after): # Runs when a message is edited, and l
 async def on_message(message): # Runs whenever a message is sent
     # More setup variables
     try:
-        f1 = open("blacklist_all.txt", "r+") # Opens the unversal blacklist file
-        f2 = open("blacklist_response.txt", "r+") # Opens the response blacklist file
+        f1 = open("data/blacklist_all.txt", "r+") # Opens the unversal blacklist file
+        f2 = open("data/blacklist_response.txt", "r+") # Opens the response blacklist file
         blacklisted_channels_all = f1.read().split(", ")
         blacklisted_channels_response = f2.read().split(", ")
     except:
@@ -111,7 +111,7 @@ async def on_message(message): # Runs whenever a message is sent
     user_message = str(message.content)
     channel = str(message.channel)
     server = str(message.guild)
-    user_id = str(message.author.id)
+    channel_id = str(message.channel.id)
 
     # Friend check
     if username not in FRIENDS:
@@ -126,9 +126,12 @@ async def on_message(message): # Runs whenever a message is sent
     if message.author == client.user: return
 
     # if the message is from a blacklisted channel, ignore it
-    elif channel in blacklisted_channels_all: return
+    elif channel_id in blacklisted_channels_all: return
 
     elif user_message.lower().count("(hesa be quiet)") > 0: pass
+
+    elif user_message.lower() == "hesa channel_id":
+        await message.channel.send(f"{channel_id}")
 
     # Command Start
     elif user_message.lower() == f"{PREFIX} test": # Test command
@@ -247,7 +250,10 @@ async def on_message(message): # Runs whenever a message is sent
             msg = ""
         except Exception as e:
             last_err_msg = e
-            await message.channel.send(err("Syntax", str(e)), reference = message)
+            if e.lower().count("400 bad request") > 0:
+                await message.channel.send(err("Amount of messages is too high", str(e)), reference = message)
+            else:
+                await message.channel.send(err("Syntax", str(e)), reference = message)
             await message.add_reaction("❌")
             msg = ""
 
@@ -387,7 +393,7 @@ async def on_message(message): # Runs whenever a message is sent
     # Notify End
 
     # Response Start
-    elif channel in blacklisted_channels_response: return # If the channel is blacklisted, ignore the message
+    elif channel_id in blacklisted_channels_response: return # If the channel is blacklisted, ignore the message
 
     elif user_message.lower() in ACTIVATOR_EQUALS:
         i = ACTIVATOR_EQUALS.index(user_message.lower())
@@ -404,7 +410,7 @@ async def on_message(message): # Runs whenever a message is sent
         await message.channel.send("is HOT AF")
 
     elif user_message.lower().count("jack") > 0:
-        await message.channel.send("did someone say jack....\nhttps://cdn.discordapp.com/attachments/881003844367163396/949525192458252288/jackhigh.png", reference = message)
+        await message.channel.send("did someone say jack....\n", file=discord.File('data/jackhigh.png'), reference = message)
 
     elif user_message.lower() == "rene":
         await message.channel.send("UwU")
