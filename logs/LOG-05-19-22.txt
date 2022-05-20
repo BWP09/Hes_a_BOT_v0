@@ -3232,3 +3232,83 @@ r
 [05/19/22 14:14:27]: [Pynoly Development: bot-testing]: He's a BOT: ok fine
 [05/19/22 14:15:22]: [Pynoly Development: bot-testing]: BWP09: Hesa spam | 1000 / test test test test
 [05/19/22 14:15:23]: [Pynoly Development: bot-testing]: He's a BOT: [Error Handler]: Amount of messages is too high
+[05/19/22 14:26:08]: [Pynoly Development: bot-testing]: BWP09: Hesa stop
+[05/19/22 14:26:09]: [Pynoly Development: bot-testing]: He's a BOT: ok fine
+[05/19/22 17:02:08]: [We Gamble For Toes: general]: Iron: @everyone VC RN
+[05/19/22 17:02:09]: [We Gamble For Toes: general]: He's a BOT: i cant now
+[05/19/22 17:02:12]: [We Gamble For Toes: general]: Iron: IT'S SUMMER
+[05/19/22 17:02:13]: [We Gamble For Toes: general]: Iron: hesa vc
+[05/19/22 17:02:14]: [We Gamble For Toes: general]: He's a BOT: sure
+[05/19/22 17:22:15]: [Dollar General: general]: K!ng: hesa join
+[05/19/22 17:22:16]: [Dollar General: general]: He's a BOT: sure
+[05/19/22 17:36:55]: [The Eggs: minecraft-chat]: CHEERIO: 
+[05/19/22 18:54:17]: [We Gamble For Toes: general]: Jack The Ripper: why does alex say i have discord
+[05/19/22 18:55:21]: [MESSAGE DELETE]
+[05/19/22 18:55:21]: [We Gamble For Toes: general]: Jack The Ripper: why does alex say i have discord
+[05/19/22 19:23:39]: [The Eggs: vc-1-chat]: CHEERIO: POV Edwin sounds
+[05/19/22 19:27:21]: [We Gamble For Toes: general]: Jack The Ripper: https://tenor.com/view/sarah-paulson-heart-sarah-my-beloved-sarah-paulson-my-beloved-american-horror-story-gif-25229068
+[05/19/22 19:27:21]: [MESSAGE EDIT]
+[05/19/22 19:27:21]: [We Gamble For Toes: general]: Jack The Ripper: https://tenor.com/view/sarah-paulson-heart-sarah-my-beloved-sarah-paulson-my-beloved-american-horror-story-gif-25229068 -> https://tenor.com/view/sarah-paulson-heart-sarah-my-beloved-sarah-paulson-my-beloved-american-horror-story-gif-25229068
+[05/19/22 19:27:25]: [MESSAGE DELETE]
+[05/19/22 19:27:25]: [We Gamble For Toes: general]: Jack The Ripper: https://tenor.com/view/sarah-paulson-heart-sarah-my-beloved-sarah-paulson-my-beloved-american-horror-story-gif-25229068
+[05/19/22 19:35:54]: [We Gamble For Toes: general]: Bluesleek: <@527167200428032022>
+[05/19/22 19:41:20]: [The Eggs: vc-1-chat]: Christian Crusader: 
+[05/19/22 19:46:09]: [The Eggs: vc-1-chat]: leebutworse: can anyone call
+[05/19/22 19:46:13]: [The Eggs: vc-1-chat]: leebutworse: @everyone
+[05/19/22 20:00:28]: [Dollar General: general]: BWP09: sammy get in goodwill
+[05/19/22 20:02:52]: [Dollar General: general]: BWP09: <@618637601154400289>
+[05/19/22 20:07:15]: [Goodwill #lowpricelowquality: general]: ProBot ✨: :watch: Searching ... (`https://www.youtube.com/watch?v=8wXRvvGr8Ug`)
+[05/19/22 20:07:16]: [MESSAGE EDIT]
+[05/19/22 20:07:16]: [Goodwill #lowpricelowquality: general]: ProBot ✨: :watch: Searching ... (`https://www.youtube.com/watch?v=8wXRvvGr8Ug`) -> :notes: **M.O.O.N. - 'Paris' [Hotline Miami Soundtrack]** Added to **ProQueue** (`04:31`)!
+[05/19/22 20:09:25]: [Goodwill #lowpricelowquality: general]: ProBot ✨: :notes: Repeat Mode: **ON**
+[05/19/22 20:09:29]: [Goodwill #lowpricelowquality: general]: ProBot ✨: :notes: Repeat Mode: **OFF**
+[05/19/22 20:09:49]: [Goodwill #lowpricelowquality: general]: ProBot ✨: :watch: Searching ... (`https://www.youtube.com/watch?v=HXbE2aJRQFk`)
+[05/19/22 20:09:49]: [MESSAGE EDIT]
+[05/19/22 20:09:49]: [Goodwill #lowpricelowquality: general]: ProBot ✨: :watch: Searching ... (`https://www.youtube.com/watch?v=HXbE2aJRQFk`) -> :notes: **Hotline Miami Soundtrack ~ Miami** Added to **ProQueue** (`03:25`)!
+[05/19/22 20:11:35]: [Goodwill #lowpricelowquality: general]: ProBot ✨: :watch: Searching ... (`https://www.youtube.com/watch?v=QVWI23Y3BkU`)
+[05/19/22 20:11:35]: [MESSAGE EDIT]
+[05/19/22 20:11:35]: [Goodwill #lowpricelowquality: general]: ProBot ✨: :watch: Searching ... (`https://www.youtube.com/watch?v=QVWI23Y3BkU`) -> :notes: **Hotline (by Jasper Byrne) - Hotline Miami OST Extended** Added to **ProQueue** (`30:00`)!
+[05/19/22 20:11:48]: [Goodwill #lowpricelowquality: general]: ProBot ✨: :watch: Searching ... (`https://www.youtube.com/watch?v=AVblOqZBlJw`)
+[05/19/22 20:11:49]: [MESSAGE EDIT]
+[05/19/22 20:11:49]: [Goodwill #lowpricelowquality: general]: ProBot ✨: :watch: Searching ... (`https://www.youtube.com/watch?v=AVblOqZBlJw`) -> :notes: **M.O.O.N. - 'Crystals' [Hotline Miami Soundtrack]** Added to **ProQueue** (`04:49`)!
+[05/19/22 20:12:04]: [Goodwill #lowpricelowquality: general]: BWP09: hesa stop
+[05/19/22 20:12:04]: [Goodwill #lowpricelowquality: general]: He's a BOT: ok fine
+[05/19/22 20:33:05]: [Goodwill #lowpricelowquality: general]: BWP09: hesa suspend
+[05/19/22 20:34:41]: [Goodwill #lowpricelowquality: general]: BWP09: hesa suspend channel
+[05/19/22 20:34:42]: [Goodwill #lowpricelowquality: general]: He's a BOT: [Error Handler]: Syntax
+[05/19/22 20:35:22]: [Goodwill #lowpricelowquality: general]: BWP09: hesa stop
+[05/19/22 20:35:30]: [Goodwill #lowpricelowquality: general]: BWP09: hesa stop
+[05/19/22 20:38:00]: [Goodwill #lowpricelowquality: general]: BWP09: its not working rn
+[05/19/22 20:38:07]: [Goodwill #lowpricelowquality: general]: BWP09: hesa test
+[05/19/22 20:38:07]: [Goodwill #lowpricelowquality: general]: He's a BOT: test
+[05/19/22 20:38:13]: [Goodwill #lowpricelowquality: general]: K!ng: Sammy
+[05/19/22 20:38:13]: [Goodwill #lowpricelowquality: general]: He's a BOT: is HOT AF
+[05/19/22 20:38:16]: [Goodwill #lowpricelowquality: general]: BWP09: hesa suspend channel
+[05/19/22 20:38:16]: [Goodwill #lowpricelowquality: general]: He's a BOT: general has been suspended
+[05/19/22 20:38:18]: [Goodwill #lowpricelowquality: general]: K!ng: Brandon
+[05/19/22 20:38:34]: [Goodwill #lowpricelowquality: general]: K!ng: What happens when we say your name
+[05/19/22 20:38:39]: [Goodwill #lowpricelowquality: general]: K!ng: Jack
+[05/19/22 20:38:42]: [Goodwill #lowpricelowquality: general]: K!ng: Oh
+[05/19/22 20:38:48]: [Goodwill #lowpricelowquality: general]: K!ng: Rude
+[05/19/22 20:38:58]: [Goodwill #lowpricelowquality: general]: BWP09: that what suspend does
+[05/19/22 20:39:00]: [Goodwill #lowpricelowquality: general]: K!ng: hesa unsuspend channel
+[05/19/22 20:39:07]: [Goodwill #lowpricelowquality: general]: BWP09: hesa test
+[05/19/22 20:39:09]: [Goodwill #lowpricelowquality: general]: BWP09: noooo
+[05/19/22 20:39:12]: [Goodwill #lowpricelowquality: general]: K!ng: hesa you suck
+[05/19/22 20:39:19]: [MESSAGE EDIT]
+[05/19/22 20:39:19]: [Goodwill #lowpricelowquality: general]: K!ng: hesa you suck -> hesa hi
+[05/19/22 20:39:44]: [Goodwill #lowpricelowquality: general]: K!ng: hesa talk
+[05/19/22 20:42:01]: [Goodwill #lowpricelowquality: general]: BWP09: hesa suspend channel
+[05/19/22 20:42:01]: [Goodwill #lowpricelowquality: general]: He's a BOT: "general" has been suspended
+[05/19/22 20:42:14]: [Goodwill #lowpricelowquality: general]: BWP09: hesa unsuspend channel
+[05/19/22 20:44:34]: [Goodwill #lowpricelowquality: general]: BWP09: hesa suspend channel
+[05/19/22 20:44:34]: [Goodwill #lowpricelowquality: general]: He's a BOT: "general" has been suspended
+[05/19/22 20:44:42]: [Goodwill #lowpricelowquality: general]: BWP09: hesa unsuspend channel
+[05/19/22 20:44:43]: [Goodwill #lowpricelowquality: general]: He's a BOT: "general" has been unsuspended
+[05/19/22 20:44:55]: [Goodwill #lowpricelowquality: general]: BWP09: hesa suspend server
+[05/19/22 20:44:55]: [Goodwill #lowpricelowquality: general]: He's a BOT: "Goodwill #lowpricelowquality" has been suspended
+[05/19/22 20:45:04]: [Goodwill #lowpricelowquality: quotes]: BWP09: hesa test
+[05/19/22 20:45:16]: [Goodwill #lowpricelowquality: general]: BWP09: hesa unsuspend server
+[05/19/22 20:45:17]: [Goodwill #lowpricelowquality: general]: He's a BOT: "Goodwill #lowpricelowquality" has been unsuspended
+[05/19/22 20:45:25]: [Goodwill #lowpricelowquality: general]: BWP09: hesa test
+[05/19/22 20:45:25]: [Goodwill #lowpricelowquality: general]: He's a BOT: test

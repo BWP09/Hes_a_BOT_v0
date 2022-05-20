@@ -3,8 +3,7 @@
 # copilot is amazing
 # python 3.10 or higher
 
-from weakref import ref
-import discord, os, datetime, time, random, asyncio
+import discord, os, datetime, time, random, asyncio #aioconsole
 import colorama as col
 from discord.utils import get
 
@@ -15,17 +14,14 @@ PREFIX = "hesa" # Bot's command activation string
 ADMIN = "BWP09" # Bot Admin's username without the #number
 FRIENDS = [ADMIN, "K!ng", "SodaCan3456"] # List of friends
 COLOR = 0x009f9f # Deafult color
-VERSION = "B.0.9.5..19.5.22" # Self-explanatory
+VERSION = "B.0.9.6..19.5.22" # Self-explanatory
 ACTIVATOR_EQUALS = ["test1", "test2", "test3"]
 RESPONCES_EQUAL = ["hi1", "hi2", "hi3"]
-loop = asyncio.get_event_loop()
-# react_yes = 0
-# react_no = 0
-# yes_amount = 0
-# no_amount = 0
-# current_pole = 0
+# loop = asyncio.get_event_loop()
 last_err_msg, msg = "", ""
 kid = 0
+suspend_channels = []
+suspend_guilds = []
 
 os.system("color") # Needed for colorama module
 client = discord.Client()
@@ -112,6 +108,7 @@ async def on_message(message): # Runs whenever a message is sent
     channel = str(message.channel)
     server = str(message.guild)
     channel_id = str(message.channel.id)
+    guild_id = str(message.guild.id)
 
     # Friend check
     if username not in FRIENDS:
@@ -125,8 +122,55 @@ async def on_message(message): # Runs whenever a message is sent
     # if the message is from the bot, ignore it
     if message.author == client.user: return
 
-    # if the message is from a blacklisted channel, ignore it
+    # suspend block
+    elif user_message.lower().startswith(f"{PREFIX} suspend channel"):
+        try:
+            suspend_channels.append(channel_id)
+            print(suspend_channels)
+            await message.channel.send(f"\"{channel}\" has been suspended")
+            await message.add_reaction("☑️")
+        except Exception as e:
+            last_err_msg = e
+            await message.channel.send(err("Syntax", str(e)), reference = message)
+            await message.add_reaction("❌")
+        
+    elif user_message.lower().startswith(f"{PREFIX} unsuspend channel"):
+        try:
+            suspend_channels.remove(channel_id)
+            print(suspend_channels)
+            await message.channel.send(f"\"{channel}\" has been unsuspended")
+            await message.add_reaction("☑️")
+        except Exception as e:
+            last_err_msg = e
+            await message.channel.send(err("Syntax", str(e)), reference = message)
+            await message.add_reaction("❌")
+        
+    elif user_message.lower().startswith(f"{PREFIX} suspend server"):
+        try:
+            suspend_guilds.append(guild_id)
+            print(suspend_guilds)
+            await message.channel.send(f"\"{server}\" has been suspended")
+            await message.add_reaction("☑️")
+        except Exception as e:
+            last_err_msg = e
+            await message.channel.send(err("Syntax", str(e)), reference = message)
+            await message.add_reaction("❌")
+        
+    elif user_message.lower().startswith(f"{PREFIX} unsuspend server"):
+        try:
+            suspend_guilds.remove(guild_id)
+            print(suspend_guilds)
+            await message.channel.send(f"\"{server}\" has been unsuspended")
+            await message.add_reaction("☑️")
+        except Exception as e:
+            last_err_msg = e
+            await message.channel.send(err("Syntax", str(e)), reference = message)
+            await message.add_reaction("❌")
+
+    # if the message is from a blacklisted or suspended channel, or a suspended server, ignore it
     elif channel_id in blacklisted_channels_all: return
+    elif channel_id in suspend_channels: return
+    elif guild_id in suspend_guilds: return
 
     elif user_message.lower().count("(hesa be quiet)") > 0: pass
 
@@ -182,8 +226,11 @@ async def on_message(message): # Runs whenever a message is sent
         `{PREFIX} spam | <amount> / <message>` - \"spam\" a message in chat (one big message)
         `{PREFIX} megaspam | <amount> / <message>` - spam a message in chat (many smaller messages, max is 20)
         `{PREFIX} last_err` - display the last technical error message
-        !!NOT IMPLIMENTED!! `{PREFIX} pole | <threshold of the amount of \"yes\" votes needed> / <threshold of the amount of \"no\" votes needed> / <text>`
         `{PREFIX} snipe` - shows the last deleted message, credit to K!ng
+        `{PREFIX} suspend channel` - suspend a channel
+        `{PREFIX} unsuspend channel` - unsuspend a channel
+        `{PREFIX} suspend server` - suspend a server
+        `{PREFIX} unsuspend server` - unsuspend a server
         v{VERSION}
         """, color=COLOR)
         await message.add_reaction("☑️")
@@ -294,15 +341,6 @@ async def on_message(message): # Runs whenever a message is sent
             await message.channel.send("fine")
         else: # But if it isn't
             await message.channel.send("wdym im not even in a vc")
-    
-
-    # elif not message.guild and user_message.lower().startswith("hesa blacklist |"):
-    #     try:
-    #         channel_blacklist_temp = user_message.lower().split("| ")[1]
-    #         f.write(f"{channel_blacklist_temp}, ")
-    #         await message.channel.send(f"Blacklisted channel {channel_blacklist_temp}")
-    #     except: pass
-    
 
     elif user_message.lower().startswith("you little"): # A joke, alternative to "hesa role give"
         try:
@@ -342,40 +380,8 @@ async def on_message(message): # Runs whenever a message is sent
     
     elif user_message.lower().startswith(f"{PREFIX} snipe"): # Get the last deleted message
         last_deleted_msg = read_file("data/last_deleted_msg.txt")
-        await message.add_reaction("☑️")
         await message.channel.send(f"[Last deleted message]: {last_deleted_msg}")
-
-    # elif user_message.lower().startswith(f"{PREFIX} pole |"): # Just a test command
-    #     global yes_amount, no_amount, current_pole, react_no, react_yes
-    #     try:
-    #         current_pole += 1
-    #         args = user_message.lower().split("| ")[1]
-    #         yes_amount = int(args.lower().split(" / ")[0])
-    #         no_amount = int(args.lower().split(" / ")[1])
-    #         title_text = args.lower().split(" / ")[2]
-    #     except Exception as e:
-    #         last_err_msg = e
-    #         await message.channel.send(err("Syntax", str(e)), reference = message)
-        
-    #     if current_pole > 1:
-    #         await message.channel.send("There is already an ongoing pole!", reference = message)
-    #         var = 0
-    #         var += "a"
-        
-    #     elif current_pole == 0:
-    #         react_no = 0
-    #         react_yes = 0
-    #         var = 0
-    #         var += "a"
-
-    #     embed_var = discord.Embed(title=title_text, description="This is a pole, react with ☑️ for yes, and ❌ for no.", color=COLOR)
-    #     await message.add_reaction("☑️")
-    #     await message.channel.send(embed=embed_var, reference = message)
-    
-    # elif user_message.lower().startswith(f"{PREFIX} pole stop"):
-    #     print(f"{col.Fore.RED}[pole] {col.Style.RESET_ALL}pole stopped")
-    #     await message.channel.send("Pole stopped", reference = message)
-    #     current_pole = 0
+        await message.add_reaction("☑️")
     # Command End
 
 
@@ -588,36 +594,5 @@ async def on_message(message): # Runs whenever a message is sent
         await message.channel.send("Im not a bot.... thats so mean :cry:", reference = message)
     # Bot End
     # Response End
-
-# @client.event
-# async def on_reaction_add(reaction, user): # Another test
-#     global react_no, react_yes, current_pole, no_amount, yes_amount
-
-#     if user == client.user: return
-
-#     elif str(reaction.emoji) == "☑️":
-#         react_yes += 1
-#         print(f"{col.Fore.RED}[pole reaction] {col.Style.RESET_ALL}poled YES")
-    
-#     elif str(reaction.emoji) == "❌":
-#         react_no += 1
-#         print(f"{col.Fore.RED}[pole reaction] {col.Style.RESET_ALL}poled NO")
-    
-#     if react_yes == yes_amount:
-#         await reaction.message.channel.send("Pole resulted in YES")
-#         react_yes = 0
-#         react_no = 0
-#         yes_amount = 0
-#         no_amount = 0
-#         current_pole = 0
-    
-#     if react_no == no_amount:
-#         await reaction.message.channel.send("Pole resulted in NO")
-#         react_yes = 0
-#         react_no = 0
-#         yes_amount = 0
-#         no_amount = 0
-#         current_pole = 0
-
 
 client.run(TOKEN) # Runs the bot
