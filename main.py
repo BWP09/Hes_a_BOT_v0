@@ -3,18 +3,18 @@
 # copilot is amazing
 # python 3.10 or higher
 
-import discord, os, datetime, time, random, asyncio #aioconsole
+import discord, os, datetime, time, random, asyncio
 import colorama as col
 from discord.utils import get
 
 
 # Setup variables
-TOKEN = "OTQ3MzQzMTg5MzUyNzk2MjIw.Yhr4GQ.rSRz8uj56_kiR_2XUZk4wacJTYQ" # DO NOT SHARE THIS CODE WITH ANYONE
+TOKEN = "" # DO NOT SHARE THIS CODE WITH ANYONE
 PREFIX = "hesa" # Bot's command activation string
 ADMIN = "BWP09" # Bot Admin's username without the #number
 FRIENDS = [ADMIN, "K!ng", "SodaCan3456"] # List of friends
 COLOR = 0x009f9f # Deafult color
-VERSION = "B.0.9.6..19.5.22" # Self-explanatory
+VERSION = "B.0.10.0..19.5.22" # Self-explanatory
 ACTIVATOR_EQUALS = ["test1", "test2", "test3"]
 RESPONCES_EQUAL = ["hi1", "hi2", "hi3"]
 # loop = asyncio.get_event_loop()
